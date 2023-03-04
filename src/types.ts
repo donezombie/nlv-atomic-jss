@@ -1,3 +1,15 @@
+interface Colors {
+  primary: string;
+  secondary: string;
+  success: string;
+  info: string;
+  warning: string;
+  danger: string;
+  light: string;
+  dark: string;
+  [key: string | number]: string;
+}
+
 type Style =
   | 'posAbsolute'
   | 'h-posAbsolute'
@@ -5045,4 +5057,4 @@ type Style =
   | 'colorDark'
   | 'borderColorDark';
 
-export { Style }
+export { Style, Colors }

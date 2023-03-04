@@ -1,13 +1,13 @@
 import { StyleSheet, css, StyleDeclaration } from 'aphrodite';
-import { Style } from './types';
+import { Style, Colors } from './types';
 
 let styles: StyleDeclaration<unknown> | any = {};
 
 class AtomicStyled {
-  setupStyles(stylesArg?: StyleDeclaration<unknown>, colorsArg?: Object) {
+  setupStyles(stylesArg?: StyleDeclaration<unknown>, colorsArg?: Colors) {
     const ultilize: any = {};
 
-    const colors: any = {
+    const colors: Colors = {
       primary: '#167ffb',
       secondary: '#6b757d',
       success: '#169588',
