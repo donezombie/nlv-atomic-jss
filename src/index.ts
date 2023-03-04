@@ -1,10 +1,14 @@
 import { StyleSheet, css, StyleDeclaration } from 'aphrodite';
-import { Style, Colors } from './types';
+import { Style, Colors, BreakPoints } from './types';
 
 let styles: StyleDeclaration<unknown> | any = {};
 
 class AtomicStyled {
-  setupStyles(stylesArg?: StyleDeclaration<unknown>, colorsArg?: Colors) {
+  setupStyles(
+    stylesArg?: StyleDeclaration<unknown>,
+    colorsArg?: Colors,
+    breakpointsArg?: BreakPoints,
+  ) {
     const ultilize: any = {};
 
     const colors: Colors = {
@@ -17,6 +21,13 @@ class AtomicStyled {
       light: '#d0d8dc',
       dark: '#343a3f',
       ...colorsArg,
+    };
+
+    const breakPoints: BreakPoints = {
+      mobile: 496,
+      tablet: 768,
+      desktop: 1024,
+      ...breakpointsArg,
     };
 
     const genColor = () => {
@@ -227,7 +238,17 @@ class AtomicStyled {
           [el.property]: el.value,
         },
       };
-      properties[`mobile-${el.name}`] = { [el.property]: el.value };
+      properties[`mobile-${el.name}`] = {
+        [`@media (max-width: ${breakPoints.mobile}px)`]: {
+          [el.property]: el.value,
+        },
+      };
+
+      properties[`tablet-${el.name}`] = {
+        [`@media (max-width: ${breakPoints.tablet}px)`]: {
+          [el.property]: el.value,
+        },
+      };
     });
 
     styles = StyleSheet.create({

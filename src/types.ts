@@ -1,3 +1,10 @@
+interface BreakPoints {
+  mobile: number;
+  tablet: number;
+  desktop: number;
+  [key: string | number]: number;
+}
+
 interface Colors {
   primary: string;
   secondary: string;
@@ -5057,4 +5064,4 @@ type Style =
   | 'colorDark'
   | 'borderColorDark';
 
-export { Style, Colors }
+export type { Style, BreakPoints, Colors };
