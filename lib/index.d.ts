@@ -1,5 +1,5 @@
-import { StyleDeclaration } from 'aphrodite';
-import { Style, Colors, BreakPoints } from './types';
+import { StyleDeclaration } from "aphrodite";
+import { Style, Colors, BreakPoints } from "./types";
 export interface AtomicStyles {
 }
 interface Options {
@@ -7,6 +7,6 @@ interface Options {
     colors?: Colors;
     breakpoints?: BreakPoints;
 }
-export declare const classes: (arrStyles: (Style | keyof StyleDeclaration<AtomicStyles>)[]) => string;
+export declare const classes: (arrStyles: (Style | keyof StyleDeclaration<AtomicStyles>)[], externalClass?: string) => string;
 export declare const setupStyles: (options?: Options) => void;
 export {};

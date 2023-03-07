@@ -1,5 +1,6 @@
-import { StyleSheet, css, StyleDeclaration } from 'aphrodite';
-import { Style, Colors, BreakPoints } from './types';
+import { get } from "lodash";
+import { StyleSheet, css, StyleDeclaration } from "aphrodite";
+import { Style, Colors, BreakPoints } from "./types";
 
 let styles: StyleDeclaration<unknown> | any = {};
 
@@ -13,18 +14,22 @@ interface Options {
 
 class AtomicStyled {
   setupStyles(options?: Options) {
-    const { colors: colorsArg, breakpoints: breakpointsArg, styles: stylesArg } = options || {};
+    const {
+      colors: colorsArg,
+      breakpoints: breakpointsArg,
+      styles: stylesArg,
+    } = options || {};
     const ultilize: any = {};
 
     const colors: Colors = {
-      primary: '#167ffb',
-      secondary: '#6b757d',
-      success: '#169588',
-      info: '#9577ca',
-      warning: '#f37b22',
-      danger: '#d23235',
-      light: '#d0d8dc',
-      dark: '#343a3f',
+      primary: "#167ffb",
+      secondary: "#6b757d",
+      success: "#169588",
+      info: "#9577ca",
+      warning: "#f37b22",
+      danger: "#d23235",
+      light: "#d0d8dc",
+      dark: "#343a3f",
       ...colorsArg,
     };
 
@@ -39,10 +44,14 @@ class AtomicStyled {
       return Object.entries(colors).reduce((nextObj: any, el) => {
         const [key, value] = el;
         //key == color + key => capitalize
-        nextObj[`color${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`] = {
+        nextObj[
+          `color${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`
+        ] = {
           color: value,
         };
-        nextObj[`borderColor${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`] = {
+        nextObj[
+          `borderColor${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`
+        ] = {
           borderColor: value,
         };
         return nextObj;
@@ -141,105 +150,105 @@ class AtomicStyled {
 
     const properties: any = {};
     const arr = [
-      { name: 'posAbsolute', value: 'absolute', property: 'position' },
-      { name: 'posRelative', value: 'relative', property: 'position' },
-      { name: 'posFixed', value: 'fixed', property: 'position' },
-      { name: 'posStatic', value: 'static', property: 'position' },
-      { name: 'posUnset', value: 'unset', property: 'position' },
-      { name: 'posSticky', value: 'sticky', property: 'position' },
-      { name: 'dFlex', value: 'flex', property: 'display' },
-      { name: 'dBlock', value: 'block', property: 'display' },
-      { name: 'dInline', value: 'inline', property: 'display' },
-      { name: 'dInlineBlock', value: 'inline-block', property: 'display' },
-      { name: 'dNone', value: 'none', property: 'display' },
-      { name: 'dUnset', value: 'unset', property: 'display' },
-      { name: 'dGrid', value: 'grid', property: 'display' },
+      { name: "posAbsolute", value: "absolute", property: "position" },
+      { name: "posRelative", value: "relative", property: "position" },
+      { name: "posFixed", value: "fixed", property: "position" },
+      { name: "posStatic", value: "static", property: "position" },
+      { name: "posUnset", value: "unset", property: "position" },
+      { name: "posSticky", value: "sticky", property: "position" },
+      { name: "dFlex", value: "flex", property: "display" },
+      { name: "dBlock", value: "block", property: "display" },
+      { name: "dInline", value: "inline", property: "display" },
+      { name: "dInlineBlock", value: "inline-block", property: "display" },
+      { name: "dNone", value: "none", property: "display" },
+      { name: "dUnset", value: "unset", property: "display" },
+      { name: "dGrid", value: "grid", property: "display" },
       {
-        name: 'justifyContentStart',
-        value: 'flex-start',
-        property: 'justifyContent',
+        name: "justifyContentStart",
+        value: "flex-start",
+        property: "justifyContent",
       },
       {
-        name: 'justifyContentEnd',
-        value: 'flex-end',
-        property: 'justifyContent',
+        name: "justifyContentEnd",
+        value: "flex-end",
+        property: "justifyContent",
       },
       {
-        name: 'justifyContentCenter',
-        value: 'center',
-        property: 'justifyContent',
+        name: "justifyContentCenter",
+        value: "center",
+        property: "justifyContent",
       },
       {
-        name: 'justifyContentBetween',
-        value: 'space-between',
-        property: 'justifyContent',
+        name: "justifyContentBetween",
+        value: "space-between",
+        property: "justifyContent",
       },
       {
-        name: 'justifyContentAround',
-        value: 'space-around',
-        property: 'justifyContent',
+        name: "justifyContentAround",
+        value: "space-around",
+        property: "justifyContent",
       },
       {
-        name: 'justifyContentEvenly',
-        value: 'space-evenly',
-        property: 'justifyContent',
+        name: "justifyContentEvenly",
+        value: "space-evenly",
+        property: "justifyContent",
       },
-      { name: 'alignItemsStart', value: 'flex-start', property: 'alignItems' },
-      { name: 'alignItemsEnd', value: 'flex-end', property: 'alignItems' },
-      { name: 'alignItemsCenter', value: 'center', property: 'alignItems' },
-      { name: 'alignItemsBaseline', value: 'baseline', property: 'alignItems' },
-      { name: 'alignItemsStretch', value: 'stretch', property: 'alignItems' },
+      { name: "alignItemsStart", value: "flex-start", property: "alignItems" },
+      { name: "alignItemsEnd", value: "flex-end", property: "alignItems" },
+      { name: "alignItemsCenter", value: "center", property: "alignItems" },
+      { name: "alignItemsBaseline", value: "baseline", property: "alignItems" },
+      { name: "alignItemsStretch", value: "stretch", property: "alignItems" },
       {
-        name: 'alignContentStart',
-        value: 'flex-start',
-        property: 'alignContent',
+        name: "alignContentStart",
+        value: "flex-start",
+        property: "alignContent",
       },
-      { name: 'alignContentEnd', value: 'flex-end', property: 'alignContent' },
-      { name: 'alignContentCenter', value: 'center', property: 'alignContent' },
+      { name: "alignContentEnd", value: "flex-end", property: "alignContent" },
+      { name: "alignContentCenter", value: "center", property: "alignContent" },
       {
-        name: 'alignContentBetween',
-        value: 'space-between',
-        property: 'alignContent',
-      },
-      {
-        name: 'alignContentAround',
-        value: 'space-around',
-        property: 'alignContent',
+        name: "alignContentBetween",
+        value: "space-between",
+        property: "alignContent",
       },
       {
-        name: 'alignContentStretch',
-        value: 'stretch',
-        property: 'alignContent',
-      },
-      { name: 'borderNone', value: 'none', property: 'border' },
-      { name: 'borderRound', value: '50%', property: 'borderRadius' },
-      { name: 'flexWrap', value: 'wrap', property: 'flexWrap' },
-      { name: 'flexWrapReverse', value: 'wrap-reverse', property: 'flexWrap' },
-      { name: 'flexWrapNoWrap', value: 'nowrap', property: 'flexWrap' },
-      { name: 'flexDirectionRow', value: 'row', property: 'flexDirection' },
-      {
-        name: 'flexDirectionRowReverse',
-        value: 'row-reverse',
-        property: 'flexDirection',
+        name: "alignContentAround",
+        value: "space-around",
+        property: "alignContent",
       },
       {
-        name: 'flexDirectionColumn',
-        value: 'column',
-        property: 'flexDirection',
+        name: "alignContentStretch",
+        value: "stretch",
+        property: "alignContent",
+      },
+      { name: "borderNone", value: "none", property: "border" },
+      { name: "borderRound", value: "50%", property: "borderRadius" },
+      { name: "flexWrap", value: "wrap", property: "flexWrap" },
+      { name: "flexWrapReverse", value: "wrap-reverse", property: "flexWrap" },
+      { name: "flexWrapNoWrap", value: "nowrap", property: "flexWrap" },
+      { name: "flexDirectionRow", value: "row", property: "flexDirection" },
+      {
+        name: "flexDirectionRowReverse",
+        value: "row-reverse",
+        property: "flexDirection",
       },
       {
-        name: 'flexDirectionColumnReverse',
-        value: 'column-reverse',
-        property: 'flexDirection',
+        name: "flexDirectionColumn",
+        value: "column",
+        property: "flexDirection",
       },
-      { name: 'flexGrow', value: '1', property: 'flexGrow' },
-      { name: 'flexShrink', value: '1', property: 'flexShrink' },
+      {
+        name: "flexDirectionColumnReverse",
+        value: "column-reverse",
+        property: "flexDirection",
+      },
+      { name: "flexGrow", value: "1", property: "flexGrow" },
+      { name: "flexShrink", value: "1", property: "flexShrink" },
     ];
 
     arr.forEach((el) => {
       properties[el.name] = { [el.property]: el.value };
       properties[`h-${el.name}`] = {
-        ':hover': {
+        ":hover": {
           [el.property]: el.value,
         },
       };
@@ -262,27 +271,27 @@ class AtomicStyled {
 
       //* Font
       fontSmall: {
-        fontSize: '12px',
+        fontSize: "12px",
       },
       fontMedium: {
-        fontSize: '16px',
+        fontSize: "16px",
       },
       fontLarge: {
-        fontSize: '24px',
+        fontSize: "24px",
       },
-      'h-fontSmall': {
-        ':hover': {
-          fontSize: '12px',
+      "h-fontSmall": {
+        ":hover": {
+          fontSize: "12px",
         },
       },
-      'h-fontMedium': {
-        ':hover': {
-          fontSize: '16px',
+      "h-fontMedium": {
+        ":hover": {
+          fontSize: "16px",
         },
       },
-      'h-fontLarge': {
-        ':hover': {
-          fontSize: '24px',
+      "h-fontLarge": {
+        ":hover": {
+          fontSize: "24px",
         },
       },
 
@@ -303,8 +312,20 @@ class AtomicStyled {
     // );
   }
 
-  classes(arrStyles: (Style | keyof StyleDeclaration<AtomicStyles>)[]) {
-    return css(arrStyles.map((style) => styles?.[style]));
+  classes(arrStyles: (Style | keyof StyleDeclaration<AtomicStyles>)[], externalClass?: string) {
+    if (externalClass) {
+      return externalClass + " " + css(
+        arrStyles.map((style) => {
+          return get(styles, `${style}`);
+        })
+      )
+    }
+
+    return css(
+      arrStyles.map((style) => {
+        return get(styles, `${style}`);
+      })
+    );
   }
 }
 

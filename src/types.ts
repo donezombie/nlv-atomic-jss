@@ -18,7 +18,7 @@ interface Colors {
 }
 
 type Style =
-  | string
+  | Omit<string, 'posAbsolute'>
   | 'posAbsolute'
   | 'h-posAbsolute'
   | 'mobile-posAbsolute'

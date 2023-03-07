@@ -1,22 +1,26 @@
 {
   "name": "nlv-atomic-styled",
-  "version": "1.0.22",
+  "version": "1.0.25",
   "description": "Atomic JSS Library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "deploy": "npm publish"
+    "deploy": "npm run build && npm publish"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "aphrodite": "^2.4.0"
+    "aphrodite": "^2.4.0",
+    "lodash": "^4.17.21"
   }
 }
