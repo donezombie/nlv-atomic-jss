@@ -18,6 +18,7 @@ interface Colors {
 }
 
 type Style =
+  | string
   | 'posAbsolute'
   | 'h-posAbsolute'
   | 'mobile-posAbsolute'
