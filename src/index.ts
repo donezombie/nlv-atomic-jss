@@ -3,12 +3,17 @@ import { Style, Colors, BreakPoints } from './types';
 
 let styles: StyleDeclaration<unknown> | any = {};
 
+export interface AtomicStyles {}
+
+interface Options {
+  styles?: StyleDeclaration<AtomicStyles>;
+  colors?: Colors;
+  breakpoints?: BreakPoints;
+}
+
 class AtomicStyled {
-  setupStyles(
-    stylesArg?: StyleDeclaration<unknown>,
-    colorsArg?: Colors,
-    breakpointsArg?: BreakPoints,
-  ) {
+  setupStyles(options?: Options) {
+    const { colors: colorsArg, breakpoints: breakpointsArg, styles: stylesArg } = options || {};
     const ultilize: any = {};
 
     const colors: Colors = {
@@ -34,12 +39,12 @@ class AtomicStyled {
       return Object.entries(colors).reduce((nextObj: any, el) => {
         const [key, value] = el;
         //key == color + key => capitalize
-        nextObj[
-          `color${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`
-        ] = { color: value };
-        nextObj[
-          `borderColor${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`
-        ] = { borderColor: value };
+        nextObj[`color${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`] = {
+          color: value,
+        };
+        nextObj[`borderColor${key.charAt(0).toUpperCase() + key.slice(1, key.length)}`] = {
+          borderColor: value,
+        };
         return nextObj;
       }, {});
     };
@@ -298,8 +303,8 @@ class AtomicStyled {
     // );
   }
 
-  classes(arrStyles: Style[]) {
-    return css(arrStyles.map((style) => styles[style]));
+  classes(arrStyles: (Style | keyof StyleDeclaration<AtomicStyles>)[]) {
+    return css(arrStyles.map((style) => styles?.[style]));
   }
 }
 

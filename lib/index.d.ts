@@ -1,4 +1,12 @@
 import { StyleDeclaration } from 'aphrodite';
 import { Style, Colors, BreakPoints } from './types';
-export declare const classes: (arrStyles: Style[]) => string;
-export declare const setupStyles: (stylesArg?: StyleDeclaration<unknown>, colorsArg?: Colors, breakpointsArg?: BreakPoints) => void;
+export interface AtomicStyles {
+}
+interface Options {
+    styles?: StyleDeclaration<AtomicStyles>;
+    colors?: Colors;
+    breakpoints?: BreakPoints;
+}
+export declare const classes: (arrStyles: (Style | keyof StyleDeclaration<AtomicStyles>)[]) => string;
+export declare const setupStyles: (options?: Options) => void;
+export {};
