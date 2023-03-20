@@ -1,5 +1,5 @@
-import { StyleDeclaration } from "aphrodite";
-import { Style, Colors, BreakPoints } from "./types";
+import { StyleDeclaration } from 'aphrodite';
+import { Style, Colors, BreakPoints } from './types';
 export interface AtomicStyles {
 }
 interface Options {
